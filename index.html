@@ -3,8 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Test</title>
-    <script src="node_modules/vue/dist/vue.min.js"></script>
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css" />
     
 </head>
@@ -14,45 +13,45 @@
             <div class="col-6 bg-danger p-5 text-light"> 
                 <h1>ПОКУПАЕМ</h1>
                 <br>
-                <h3>1 WMR - {{buy.wmr}} руб</h3>
-                <h3>1 WMZ - {{buy.wmz}} руб</h3>
+                <h3>1 WMR - {{resp.buy.wmr}} руб</h3>
+                <h3>1 WMZ - {{resp.buy.wmz}} руб</h3>
                 <br>
                 <label >Вы отдадите</label>
                 <div class="container row">
-                    <input value="" @change="change_buy" @keypress="isNumberKey" class="form-control col-6" id="input-buy" />
+                    <input @change="change_buy" v-model="str_buy.inp" @keypress="isNumberKey" class="form-control col-6" ref="input_buy" />
                     <div class="col-4 offset-1">
-                        <select id="select-buy" @change="change_buy" class="form-control">
-                            <option value="0" selected disabled>Select</option>
-                            <option v-for="cp in cps" :value="cp.buy_value">{{cp.text}}</option>
+                        <select v-model="str_buy.sel" ref="select_buy" @change="change_buy" class="form-control">
+                            <option value="0" >Select</option>
+                            <option v-for="cp in cps" :value="cp.val" >{{cp.text}}</option>
                         </select>
                     </div>
                 </div>
                 <br>
                 <label >Вы получите</label>
                 <div class="container row">
-                    <label class="form-control col-6" id="input-buy-cnt"></label>
+                    <label class="form-control col-6" ref="label_buy_cnt" >{{str_buy.lbl}}</label>
                     <label class="col-4 offset-1">рублей</label>
                 </div>
             </div>
             <div class="col-6 bg-info p-5 text-light">
                 <h1>ПРОДАЁМ</h1>
                 <br>
-                <h3>1 WMR - {{sell.wmr}} руб</h3>
-                <h3>1 WMZ - {{sell.wmz}} руб</h3>
+                <h3>1 WMR - {{resp.sell.wmr}} руб</h3>
+                <h3>1 WMZ - {{resp.sell.wmz}} руб</h3>
                 <br>
                 <label >Вы отдадите</label>
                 <div class="container row">
-                    <input value="" @change="change_sell" @keypress="isNumberKey" class="form-control col-6" id="input-sell" />
+                    <input v-model="str_sell.inp" @change="change_sell" @keypress="isNumberKey" class="form-control col-6" ref="input_sell" />
                     <label class="col-4 offset-1">рублей</label>
                 </div>
                 <br>
                 <label >Вы получите</label>
                 <div class="container row">
-                    <label class="form-control col-6" id="input-sell-cnt"></label>
+                    <label class="form-control col-6" ref="label_sell_cnt">{{str_sell.lbl}}</label>
                     <div class="col-4 offset-1">
-                        <select id="select-sell" @change="change_sell" class="form-control">
+                        <select v-model="str_sell.sel" ref="select_sell" @change="change_sell" class="form-control">
                             <option value="0" selected disabled>Select</option>
-                            <option v-for="cp in cps" :value="cp.sell_value">{{cp.text}}</option>
+                            <option v-for="cp in cps" :value="cp.val" >{{cp.text}}</option>
                         </select>
                     </div>
                 </div>
